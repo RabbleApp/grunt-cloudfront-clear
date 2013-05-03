@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "homepage": "https://github.com/RabbleApp/grunt-cloudfront-clear",
   "author": {
-    "name": "Thobias Bergström",
+    "name": "Thobias Bergström",
     "email": "thobias@rabble.se",
     "url": "http://www.rabble.com/"
   },
@@ -37,7 +37,14 @@
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
+  "dependencies": {
+    "invalidatejs": "~0.5.6"
+  },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "cloudfront",
+    "invalidation",
+    "cache",
+    "busting"
   ]
 }
