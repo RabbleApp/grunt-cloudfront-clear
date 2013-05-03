@@ -2,7 +2,7 @@
  * grunt-cloudfront-clear
  * https://github.com/RabbleApp/grunt-cloudfront-clear
  *
- * Copyright (c) 2013 Thobias Bergström
+ * Copyright (c) 2013 Thobias Bergström
  * Licensed under the MIT license.
  */
 
@@ -15,8 +15,8 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
+        'tasks/*.js'
+        //'<%= nodeunit.tests %>',
       ],
       options: {
         jshintrc: '.jshintrc',
@@ -30,28 +30,18 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     cloudfront_clear: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-    },
+      index: {
+        resourcePaths: ["/index.html"],
+        secret_key: "AWS secret",
+        access_key: "AWS key",
+        dist: "CloudFront Distribution"
+      }
+    }
 
     // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+    // nodeunit: {
+    //   tests: ['test/*_test.js'],
+    // },
 
   });
 
@@ -61,11 +51,12 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  //grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'cloudfront_clear', 'nodeunit']);
+  //grunt.registerTask('test', ['clean', 'cloudfront_clear', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'cloudfront_clear:index']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

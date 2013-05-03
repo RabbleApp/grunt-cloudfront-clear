@@ -2,6 +2,8 @@
 
 > Used to invalidate files on Amazon CloudFront
 
+This is a simple wrapper for [invalidatejs](https://github.com/Johnny-Ray/invalidatejs)
+
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
@@ -25,9 +27,6 @@ In your project's Gruntfile, add a section named `cloudfront_clear` to the data 
 ```js
 grunt.initConfig({
   cloudfront_clear: {
-    options: {
-      // Task-specific options go here.
-    },
     your_target: {
       // Target-specific file lists and/or options go here.
     },
@@ -37,48 +36,20 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+Check out [invalidatejs](https://github.com/Johnny-Ray/invalidatejs) for config options.
 
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+### Usage Example
 
 ```js
 grunt.initConfig({
   cloudfront_clear: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  cloudfront_clear: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    invalidateIndex: {
+      resourcePaths: ["/index.html"],
+      secret_key: "AWS secret",
+      access_key: "AWS key",
+      dist: "CloudFront Distribution"
+    }
+  }
 })
 ```
 
